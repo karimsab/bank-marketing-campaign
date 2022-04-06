@@ -10,12 +10,10 @@ plt.ion()
 
 st.title('Analyse des campagnes promotionnelles bancaires')
 st.caption('par Karim SABER-CHERIF et Artem VALIULIN')
-#image = Image.open(r"C:\Users\tyoma\Downloads\header.png")
-#st.image(image, width=800)
-st.markdown('Le jeu de données initial :')
+
  
 df = pd.read_csv('/Users/karim/data/projet/bank.csv')
-st.dataframe(df)
+
 
 #####################################################################################
 #####################################################################################
@@ -93,7 +91,10 @@ print('cross validation mean accuracy DT: {0:.2f}%'.format(np.mean(dt_score)*100
 page = st.sidebar.selectbox("Menu", ["Etude des variables", "Tests statistiques", "Machine learning"]) 
 
 if page == "Etude des variables":
-
+    image = Image.open("/Users/karim/data/projet/header.png")
+    st.image(image, width=800)
+    st.markdown('Le jeu de données initial :')
+    st.dataframe(df)
 #poutcome
     st.markdown('Réponse des clients lors de la précédente campagne :')
 
@@ -124,16 +125,65 @@ if page == "Etude des variables":
     plt.title('balance vs deposit')
     st.pyplot(fig)
 
+
+    # on divise le df en fonction de deposit
+    df_yes = df.loc[df['deposit'] == 'yes']
+    df_no = df.loc[df['deposit'] == 'no']
+# on dessine
+    fig = plt.figure(figsize=(10,10))
+    ax = fig.add_subplot(111, projection='3d')
+    z = df_yes.balance
+    x = df_yes.previous
+    y = df_yes.duration
+    a = df_no.balance
+    b = df_no.previous
+    c = df_no.duration
+    ax.scatter(x, y, z, c='red')
+    ax.scatter(b, c, a, c='blue')
+    ax.set_xlabel('Variable Previous')
+    ax.set_ylabel('Variable Duration')
+    ax.set_zlabel('Variable Balance')
+    st.pyplot(fig)
+
+
+    from bokeh.plotting import figure # Importation de la classe figure qui permet de créer un graphique bokeh.
+    from bokeh.plotting import show   # Importation de la fonction show qui permet d'afficher une figure.
+
+## Instanciation d'une figure
+
+    p = figure(title = "Previous vs Balance",
+            plot_width = 500,   # largeur
+           plot_height = 500)  # hauteur
+
+# Listes de coordonnées
+
+    y1 = df[df.deposit=='yes'].previous       
+    y2 = df[df.deposit=='no'].previous
+    x1 = df[df.deposit=='yes'].duration     
+    x2 = df[df.deposit=='no'].duration 
+
+# Création du premier nuage de points
+    p.circle(x1, y1, color = 'black', legend='Les clients qui ont refusé la proposition')
+## Création du second nuage de points
+    p.circle(x2,               # abscisses
+         y2,              # ordonnées
+         color = 'red',
+        legend='Les clients qui ont accepté la proposition')
+## Affichage de la figure
+    p.xaxis.axis_label = 'Variable Previous'
+    p.yaxis.axis_label = 'Variable Balance'
+    st.bokeh_chart(p)
+
 elif page == "Tests statistiques":
     #pearson
-    st.markdown('La matrice de corrélation (test de Pearson) :')
+    st.markdown('**La matrice de corrélation (test de Pearson) :**')
 
     fig, ax = plt.subplots(figsize=(10,8))
     sns.heatmap(df.corr(), annot=True,cmap='viridis')
     plt.title('Coefficient de Pearson')
     st.pyplot(fig)
 
-
+    st.latex(r''' test du \chi 2''')
     from scipy.stats import chi2_contingency
     df_cat = df.select_dtypes('object')
     def V_Cramer(table, N):
@@ -156,14 +206,15 @@ elif page == "Tests statistiques":
     stats = stats.rename(columns={0:'chi 2', 1:'p-value', 2:'DoF', 3:'V de Cramer'})
     st.write(stats)
     st.write("Ce test nous donne des informations sur la corrélation entre les variables catégorielles et la variable cible.\
-              16 Les variables ayant un V de Cramer compris entre 20 et 30 sont des variables très corrélées à la variable deposit, on a \
-              entre autres: - housing, contact, month, poutcome.")
-    
-    st.write('Il est aussi possible de faire un test ANOVA entre les variables quantitatives et les\
-variables qualitatives. ANOVA (ANalyse Of VAriance), compare l’écart des moyennes\
-d’échantillons par rapport à la moyenne globale. Plus l’écart est important plus la\
-variance est grande, et inversement. Le test renvoie la statistique F et la p-value, qui va\
-nous servir à rejeter ou non l’hypothèse. En général, plus F est élevé, moins les\
+              16 Les variables ayant un V de Cramer compris entre 20 et 30 sont des variables très corrélées à la variable \
+                  deposit, on a entre autres: - housing, contact, month, poutcome.")
+
+    st.markdown('**test ANOVA**')
+    st.write('Il est aussi possible de faire un test ANOVA entre les variables quantitatives et les \
+variables qualitatives. ANOVA (ANalyse Of VAriance), compare l’écart des moyennes \
+d’échantillons par rapport à la moyenne globale. Plus l’écart est important plus la \
+variance est grande, et inversement. Le test renvoie la statistique F et la p-value, qui va \
+nous servir à rejeter ou non l’hypothèse. En général, plus F est élevé, moins les \
 variables sont corrélées, elles sont donc chacunes pertinentes.')
     import statsmodels.api
     result = statsmodels.formula.api.ols('balance ~ loan', data=df).fit()
@@ -176,10 +227,12 @@ on peut donc rejeter l’hypothèse H0 entre ces 2 variables.")
 
 
 elif page == "Machine learning":
+    st.write('boxplot "previous"')
 
     fig, ax = plt.subplots(figsize=(20,6))
     sns.boxplot(df.previous)
     st.pyplot(fig)
+    st.write('boxplot "campaign"')
     fig, ax = plt.subplots(figsize=(20,6))
     sns.boxplot(df.campaign)
     st.pyplot(fig)
@@ -187,12 +240,20 @@ elif page == "Machine learning":
     st.write('On remarque certaines valeurs extrêmes. On peut s’y intéresser en affichant les lignes dans\
     le dataframe liées à ces valeurs.')
     st.write('Quand previous > 35')
-    st.write(df_new[df_new['previous']>35])
+    st.write(df[df['previous']>35])
     st.write('Quand campaign > 35')
-    st.write(df_new[df_new['campaign']>35])
+    st.write(df[df['campaign']>35])
+
+    st.write("Pour ces clients, aucun n'a répondu positivement à la campagne.\
+Ces valeurs ne représentent pas la majorité des clients, il serait utile de majorer la variable\
+campaign, pour le faire, on remplacera les valeurs extrêmes par la moyenne de la variable.\
+On garde les valeurs extrêmes de previous car certains ont répondus positivement, c’est\
+donc des informations utiles pour savoir quel type de client est susceptible de faire un\
+dépôt après la campagne. Par la même occasion, on va créer une copie de df pour nos\
+prochaines transformations, et aussi, binarisé la variable deposit.")
 
 
-    st.write('Il vient ensuite le feature engeneering des variables :')
+    st.markdown('**Il vient ensuite le feature engeneering des variables :**')
 
     st.write('On remplace les variables binaires par 0 ou 1')
     st.write('On crée des variables indicatrices à partir des variables catégorielles')
@@ -223,7 +284,7 @@ elif page == "Machine learning":
     st.write("Score test :", get_model(model))
 
     # cross validation
-
+    st.markdown('**Validation croisée**')
     gbc_score = cross_val_score(gbc, X=X_train, y=y_train, cv=5, scoring='accuracy', n_jobs=-1)
     dt_score = cross_val_score(dt, X=X_train, y=y_train, cv=5, scoring='accuracy', n_jobs=-1) 
     st.write('Cross validation score GradientBoosting :', gbc_score.mean(), '%')  
@@ -264,10 +325,10 @@ elif page == "Machine learning":
     st.write("Les 3 variables les plus importantes en termes d’informations pertinentes est poutcome=\
 success, contact=unknown et age pour le modèle d’arbre de décision.\
 Pour le modèle de gradient boosting, on a : balance, poutcome (success) et age.\
-Les variables age et poutcome sont donc des informations à privilégier lors d’une\
-campagne, notamment le fait que les clients contactés qui ont répondu positivement à une\
-précédente campagne, ont plus de chance de répondre positivement à une autre\
-campagne. Ils seront donc à contacter en priorité pour de futures campagnes. On peut\
+Les variables age et poutcome sont donc des informations à privilégier lors d’une \
+campagne, notamment le fait que les clients contactés qui ont répondu positivement à une \
+précédente campagne, ont plus de chance de répondre positivement à une autre \
+campagne. Ils seront donc à contacter en priorité pour de futures campagnes. On peut \
 aussi s’en assurer visuellement :")
 
 
@@ -278,23 +339,25 @@ aussi s’en assurer visuellement :")
     st.write('En effet, les clients ayant déjà profiter d’une offre antérieure, ont répondu en grande\
 majorité positivement à la campagne étudiée.')
 
-
+    st.markdown('**Arbre de décision :**')
     from sklearn import tree
     dt = DecisionTreeClassifier(max_depth=6)
     dt.fit(X_train, y_train)
+    st.write('score decision tree')
     st.write(dt.score(X_test, y_test))
     fig, ax = plt.subplots(figsize=(20,8))
     tree.plot_tree(dt, max_depth=2, filled=True, feature_names=X_train.columns, class_names=True)
     st.pyplot(fig)
 
-
+    st.write('On peut utiliser le rapport de classification pour obtenir des données supplémentaires,\
+ainsi qu’une matrice de contingence :')
     y_pred = gbc.predict(X_test)
     st.code(metrics.classification_report(y_test, y_pred))
     st.code(pd.crosstab(y_test, y_pred, rownames=['Classe réelle'], colnames=['Classe prédite']))
-
-    st.write('Traçons maintenant la courbe ROC. La courbe ROC affiche la “sensibilité” (Vrai positif) en\
-fonction de “antispécificité” (Faux positif). On calcul en fait l’air sous la courbe (AUC, area\
-under the curve). Si cette valeur est de 0,5 (50%), le modèle est aléatoire, plus l’aire est\
+    st.markdown('**Courbe ROC :**')
+    st.write('Traçons maintenant la courbe ROC. La courbe ROC affiche la “sensibilité” (Vrai positif) en \
+fonction de “antispécificité” (Faux positif). On calcul en fait l’air sous la courbe (AUC, area \
+under the curve). Si cette valeur est de 0,5 (50%), le modèle est aléatoire, plus l’aire est \
 importante, plus notre modèle sera performant et arrivera à classifier correctement.')
 
 
@@ -323,5 +386,22 @@ importante, plus notre modèle sera performant et arrivera à classifier correct
     plt.title('Courbe ROC')
     plt.grid(False)
     st.pyplot(fig)
+
+    st.markdown('**GridSearchCV :**')
+
+
+    from sklearn.model_selection import GridSearchCV
+
+    with st.echo():
+        hyperparameter = dict(max_depth = [5, 15], min_samples_leaf = [3, 10])
+
+        gridP = GridSearchCV(gbc, hyperparameter, cv = 3, verbose = 1, n_jobs = -1)
+        grille = gridP.fit(X_train, y_train)
+
+    st.write('meilleurs paramètres selectionnés :')
+    st.code(gridP.best_params_)
+    y_pred = gridP.predict(X_test)
+    st.write('gradient boosting accuracy test score with best param : ')
+    st.code(metrics.accuracy_score(y_test, y_pred).round(2))
 
 
