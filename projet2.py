@@ -7,7 +7,6 @@ sns.set_theme(style='whitegrid')
 from PIL import Image
 plt.ion()
 
-
 st.title('Analyse des campagnes promotionnelles bancaires')
 st.caption('par Karim SABER-CHERIF et Artem VALIULIN')
 #image = Image.open(r"C:\Users\tyoma\Downloads\header.png")
@@ -17,47 +16,8 @@ st.markdown('Le jeu de données initial :')
 df = pd.read_csv('/Users/karim/data/projet/bank.csv')
 st.dataframe(df)
 
-st.title("Phase de l'analyse")
-
-
-#poutcome
-st.markdown('Réponse des clients lors de la précédente campagne :')
-
-fig, ax = plt.subplots(figsize=(20,7))
-sns.countplot(df.poutcome, hue=df.deposit, palette=['#7B68EE', '#FF7F50'], alpha=0.75)
-plt.ylabel('Fréquence (%)')
-plt.title('poutcome vs deposit')
-_ = ax.set_yticklabels(map('{:.1f}%'.format, 100*ax.yaxis.get_majorticklocs()/df.shape[0]))
-st.pyplot(fig)
-
-#job
-st.markdown('Fréquence des réponses selon le métier du client')
-
-fig, ax = plt.subplots(figsize=(20,9))
-sns.countplot(df.job, hue=df.deposit, palette=['#7B68EE', '#FF7F50'], alpha=0.75)
-plt.ylabel('Fréquence (%)')
-plt.title('job vs deposit')
-_ = ax.set_yticklabels(map('{:.1f}%'.format, 100*ax.yaxis.get_majorticklocs()/df.shape[0]))
-st.pyplot(fig)
-
-#balance
-st.markdown('La réponse du client en fonction du montant de son compte bancaire :')
-
-fig, ax = plt.subplots(figsize=(20,7))
-ax = sns.countplot(pd.qcut(df.balance, [0, .25, .5, .75, .9, 1.]), hue=df.deposit, palette=['#7B68EE', '#FF7F50'], alpha=0.75)
-_ = ax.set_yticklabels(map('{:.1f}%'.format, 100*ax.yaxis.get_majorticklocs()/df.shape[0]))
-plt.ylabel('fréquence')
-plt.title('balance vs deposit')
-st.pyplot(fig)
-
-#pearson
-st.markdown('La matrice de corrélation (test de Pearson) :')
-
-fig, ax = plt.subplots(figsize=(10,8))
-sns.heatmap(df.corr(), annot=True,cmap='viridis')
-plt.title('Coefficient de Pearson')
-st.pyplot(fig)
-
+#####################################################################################
+#####################################################################################
 
 df_new = df.copy() # On enregistre df dans df_new pour ne pas corrompre les données de df
 df_new.deposit = df_new.deposit.replace(['no', 'yes'], [0, 1])
@@ -119,8 +79,83 @@ dt_score = cross_val_score(dt, X=X_train, y=y_train, cv=5, scoring='accuracy', n
 print('cross validation mean accuracy GBC: {0:.2f}%'.format(np.mean(gbc_score)*100))
 print('cross validation mean accuracy DT: {0:.2f}%'.format(np.mean(dt_score)*100))
 'cross validation mean accuracy GBC: {0:.2f}%'.format(np.mean(gbc_score)*100)
-score = round(np.mean(dt_score)*100,2)
-st.caption('cross validation mean accuracy GBC:')
-st.caption(round(np.mean(dt_score)*100,2))
-# feature importance
-st.markdown("L'importance des variables déterminées par les modèles :")
+
+#affichage du score des modeles sur streamlit
+#score = round(np.mean(dt_score)*100,2)
+#st.caption('cross validation mean accuracy GBC:')
+#st.caption(round(np.mean(dt_score)*100,2))
+
+#####################################################################################
+#####################################################################################
+
+# Create a page dropdown 
+page = st.sidebar.selectbox("Menu", ["Etude des variables", "Tests statistiques", "Machine learning"]) 
+
+if page == "Etude des variables":
+
+#poutcome
+    st.markdown('Réponse des clients lors de la précédente campagne :')
+
+    fig, ax = plt.subplots(figsize=(20,7))
+    sns.countplot(df.poutcome, hue=df.deposit, palette=['#7B68EE', '#FF7F50'], alpha=0.75)
+    plt.ylabel('Fréquence (%)')
+    plt.title('poutcome vs deposit')
+    _ = ax.set_yticklabels(map('{:.1f}%'.format, 100*ax.yaxis.get_majorticklocs()/df.shape[0]))
+    st.pyplot(fig)
+
+#job
+    st.markdown('Fréquence des réponses selon le métier du client')
+
+    fig, ax = plt.subplots(figsize=(20,9))
+    sns.countplot(df.job, hue=df.deposit, palette=['#7B68EE', '#FF7F50'], alpha=0.75)
+    plt.ylabel('Fréquence (%)')
+    plt.title('job vs deposit')
+    _ = ax.set_yticklabels(map('{:.1f}%'.format, 100*ax.yaxis.get_majorticklocs()/df.shape[0]))
+    st.pyplot(fig)
+
+#balance
+    st.markdown('La réponse du client en fonction du montant de son compte bancaire :')
+
+    fig, ax = plt.subplots(figsize=(20,7))
+    ax = sns.countplot(pd.qcut(df.balance, [0, .25, .5, .75, .9, 1.]), hue=df.deposit, palette=['#7B68EE', '#FF7F50'], alpha=0.75)
+    _ = ax.set_yticklabels(map('{:.1f}%'.format, 100*ax.yaxis.get_majorticklocs()/df.shape[0]))
+    plt.ylabel('fréquence')
+    plt.title('balance vs deposit')
+    st.pyplot(fig)
+
+elif page == "Tests statistiques":
+    #pearson
+    st.markdown('La matrice de corrélation (test de Pearson) :')
+
+    fig, ax = plt.subplots(figsize=(10,8))
+    sns.heatmap(df.corr(), annot=True,cmap='viridis')
+    plt.title('Coefficient de Pearson')
+    st.pyplot(fig)
+
+elif page == "Machine learning":
+
+    model = st.selectbox(label="Choix du modèle", options=["Gradient Boosting", "Decision Tree"])
+
+    def get_model(model):
+        if model == "Gradient Boosting":
+            model = GradientBoostingClassifier(n_estimators = 200,
+                                  learning_rate=0.1,
+                                  max_depth = 6,
+                                  random_state = 234)
+        elif model == "Decision Tree":
+            model = DecisionTreeClassifier(criterion='entropy', max_depth=6, random_state=234)
+        model.fit(X_train, y_train)
+        score = model.score(X_test,y_test)
+        return score
+
+        st.write("Score test :", get_model(model))
+
+
+    # feature importance
+    st.markdown("L'importance des variables déterminées par les modèles :")
+
+
+
+
+
+
