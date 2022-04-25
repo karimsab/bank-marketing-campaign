@@ -1,12 +1,9 @@
 import numpy as np
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st
-import plotly.io as pio
-
 
 st.title('Analyse des campagnes promotionnelles bancaires')
 st.caption('par Karim SABER-CHERIF et Artem VALIULIN')
