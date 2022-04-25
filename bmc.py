@@ -74,7 +74,7 @@ page = st.sidebar.selectbox("Menu", ["Etude des variables", "Tests statistiques"
 
 if page == "Etude des variables":   
 
-    st.image('/Users/karim/data/projet/header.png', width=800)
+    st.image('https://github.com/karimsab/bank-marketing-campaign/blob/main/header.png', width=800)
     st.markdown('Le jeu de données initial :')
     st.dataframe(df)
     
