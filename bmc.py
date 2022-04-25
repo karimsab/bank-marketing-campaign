@@ -9,7 +9,7 @@ import streamlit as st
 st.title('Analyse des campagnes promotionnelles bancaires')
 st.caption('par Karim SABER-CHERIF et Artem VALIULIN')
 
-df = pd.read_csv("https://github.com/karimsab/bank-marketing-campaign/blob/main/bank.csv", sep=",", header=0)
+df = pd.read_csv("https://github.com/karimsab/bank-marketing-campaign/blob/main/bank.csv", sep=",", header=0, error_bad_lines=False)
 
 #####################################################################################
 #####################################################################################
