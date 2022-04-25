@@ -9,3 +9,6 @@ Du point de vue pédagogique, ce travail nous a permis de mettre en œuvre l'ens
 
 Lien du dataset : https://www.kaggle.com/janiobachmann/bank-marketing-dataset \
 Source initiale : [Moro et al., 2014] S. Moro, P. Cortez and P. Rita. A Data-Driven Approach to Predict the Success of Bank Telemarketing. Decision Support Systems, Elsevier, 62:22-31, June 2014
+
+## STREAMLIT
+https://share.streamlit.io/karimsab/bank-marketing-campaign/main/bmc.py
