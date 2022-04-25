@@ -7,6 +7,5 @@ Du point de vue pédagogique, ce travail nous a permis de mettre en œuvre l'ens
 
 ## Sources
 
-Le jeu de données étudié dans la présente recherche provient du site Kaggle:
-Le lien du projet : Bank Marketing Dataset | Kaggle
-La source initiale : [Moro et al., 2014] S. Moro, P. Cortez and P. Rita. A Data-Driven Approach to Predict the Success of Bank Telemarketing. Decision Support Systems, Elsevier, 62:22-31, June 2014
+Lien du dataset : https://www.kaggle.com/janiobachmann/bank-marketing-dataset
+Source initiale : [Moro et al., 2014] S. Moro, P. Cortez and P. Rita. A Data-Driven Approach to Predict the Success of Bank Telemarketing. Decision Support Systems, Elsevier, 62:22-31, June 2014
