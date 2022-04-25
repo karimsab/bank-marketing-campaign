@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st
 
-@st.cache
+#@st.cache
 st.title('Analyse des campagnes promotionnelles bancaires')
 st.caption('par Karim SABER-CHERIF et Artem VALIULIN')
 
