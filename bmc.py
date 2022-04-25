@@ -5,10 +5,11 @@ import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st
 
+@st.cache
 st.title('Analyse des campagnes promotionnelles bancaires')
 st.caption('par Karim SABER-CHERIF et Artem VALIULIN')
 
-df = pd.read_csv('/Users/karim/data/projet/bank.csv')
+df = pd.read_csv("https://github.com/karimsab/bank-marketing-campaign/blob/main/bank.csv")
 
 #####################################################################################
 #####################################################################################
