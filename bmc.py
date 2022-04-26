@@ -285,7 +285,8 @@ if page == "Etude des variables":
     st.write("La variable 'poutcome' a 4 modalités, dont une se nomme 'unknown', soit une valeur\
      inconnu, cependant cette variable nous donne des informations importantes sur les résultats\
          de l'enquête. Essayons d'en savoir plus")
-    st.code("df.previous[df.poutcome == 'unknown'].unique()")
+    
+    st.code("print(df.previous[df.poutcome == 'unknown'].unique())")
         
     st.write("En effet, la variable 'previous' nous indique si la personne a déjà été contacté avant\
          cette campagne et si oui, combien de fois.\
