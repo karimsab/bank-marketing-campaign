@@ -286,12 +286,12 @@ if page == "Etude des variables":
      inconnu, cependant cette variable nous donne des informations importantes sur les résultats\
          de l'enquête. Essayons d'en savoir plus")
     
-    st.code("print(df.previous[df.poutcome == 'unknown'].unique())")
+    st.code("df.poutcome[df.previous == 0].unique() --> unknown")
         
     st.write("En effet, la variable 'previous' nous indique si la personne a déjà été contacté avant\
          cette campagne et si oui, combien de fois.\
-             Après filtrage du dataframe, la modalité 'unknown' indique les personnes n'ayant jamais\
-                  été contacté.")
+             Après filtrage du dataframe pour les personne n'ayant jamais été contacté, la modalité 'unknown' est affichée, ce qui indique \
+             que ce sont des personnes qui sont contacté pour la 1ère fois")
 
 ###### page tests statistiques ######
 
