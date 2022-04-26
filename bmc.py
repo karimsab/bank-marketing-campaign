@@ -72,6 +72,7 @@ y_pred_dt = dt.predict(X_test)
 page = st.sidebar.selectbox("Menu", ["Etude des variables", "Tests statistiques", "Machine learning"]) 
 
 ###### affichage des différentes pages ######
+###### page études des variables ######
 
 if page == "Etude des variables":   
 
@@ -80,19 +81,15 @@ if page == "Etude des variables":
     st.dataframe(df)
     
     # deposit
-    fig = go.Figure()
+    labels = ['No', 'Yes']
+    values = df.deposit.value_counts(normalize=True)
 
-    fig.add_trace(go.Histogram(x = df['deposit'], 
-                          histnorm = 'percent',
-                          marker_color = ['seagreen', 'lightcoral'],
-                          opacity=0.8))  
-
-    fig.update_layout(title = 'Distribution de la variable deposit',
-                 xaxis_title = 'deposit',
-                 yaxis_title = 'frequency',
-                 width = 600, 
-                 height = 500,
-                 template='simple_white')
+    fig = go.Figure(data=[go.Pie(labels=labels, values=values, textinfo='label+percent',
+                             insidetextorientation='radial',
+                             pull=[0, 0.1])])
+    fig.update_layout(title_text="Distribution de la variable cible 'deposit'",
+                 margin=dict(t=80, b=10, l=10, r=10))
+    fig.update_traces(marker=dict(colors=['lightcoral', 'seagreen'], line=dict(color='#000000', width=1)))
 
     st.plotly_chart(fig)
 
