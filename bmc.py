@@ -75,7 +75,7 @@ page = st.sidebar.selectbox("Menu", ["Etude des variables", "Tests statistiques"
 
 if page == "Etude des variables":   
 
-    st.image('![header](https://user-images.githubusercontent.com/62601686/165300401-3f1257db-3a61-419a-bf7a-840c3c013ff7.png)', width=800)
+    st.image('https://user-images.githubusercontent.com/62601686/165300401-3f1257db-3a61-419a-bf7a-840c3c013ff7.png', width=800)
     st.markdown('Le jeu de données initial :')
     st.dataframe(df)
     
