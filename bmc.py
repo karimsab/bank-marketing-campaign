@@ -80,8 +80,8 @@ if page == "Etude des variables":
     st.markdown('Le jeu de données initial :')
     st.dataframe(df)
     st.markdown('Explication des variables :')
-    st.write("1 - age : âge du client \n"
-             "2 - job : métier du client \n"
+    st.write("1 - age : âge du client")
+             st.write("2 - job : métier du client")'''
              "3 - marital : statut marital du client \n"
              "4 - education : niveau d'étude du client \n"
              "5 - default : si le client à un crédit impayé \n"
@@ -97,6 +97,7 @@ if page == "Etude des variables":
              "15 - previous : "
              "16 - poutcome : "
              "17 - deposit :  "
+           '''  
     # deposit
     labels = ['No', 'Yes']
     values = df.deposit.value_counts(normalize=True)
