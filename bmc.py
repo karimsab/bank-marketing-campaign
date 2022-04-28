@@ -81,7 +81,7 @@ if page == "Etude des variables":
     st.dataframe(df)
     st.markdown('Explication des variables :')
     st.write("")
-    st.text("1 - age : âge du client \n
+    st.text("1 - age : âge du client \n\
     2 - job : métier du client \n")
 
     # deposit
