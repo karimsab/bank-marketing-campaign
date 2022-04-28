@@ -288,13 +288,6 @@ if page == "Etude des variables":
         les retraités ou les étudiants sont des clients prioritaires.")
 
     # poutcome
-    fig = go.Figure(data=[go.Histogram(x=df.poutcome)])
-    fig.update_layout(title_text='Distribution de la variable poutcome',
-                     width = 800, 
-                 height = 600,
-                 template='simple_white')
-    st.plotly_chart(fig)
-
     fig = px.parallel_categories(df, dimensions=['poutcome', 'deposit'],
                              color_continuous_scale=px.colors.sequential.Inferno)
 
