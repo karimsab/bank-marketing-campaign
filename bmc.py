@@ -81,8 +81,8 @@ if page == "Etude des variables":
 clients d’une banque qui ont été “télémarketés” pour souscrire à un produit que \n\
 l’on appelle un 'dépôt à terme'. Lorsqu’un client souscrit à ce produit, il place \n\
 une quantité d’argent dans un compte spécifique et ne pourra pas toucher ces fonds \n\
-avant l’expiration du terme. En échange, le client reçoit des intérêts de la part de \n\
-la banque à la fin du terme.")
+avant l’expiration du terme. En échange, le client reçoit des intérêts de la \n\
+part de la banque à la fin du terme.")
     st.markdown('Le jeu de données initial :')
     st.dataframe(df)
     st.markdown('Explication des variables :')
