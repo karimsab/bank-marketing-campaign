@@ -82,23 +82,7 @@ if page == "Etude des variables":
     st.markdown('Explication des variables :')
     st.write("1 - age : âge du client")
     st.write("2 - job : métier du client")
-'''
-             "3 - marital : statut marital du client \n"
-             "4 - education : niveau d'étude du client \n"
-             "5 - default : si le client à un crédit impayé \n"
-             "6 - balance : somme d'argent sur le compte bancaire \n"
-             "7 - housing : si le client a un emprûnt immobilier \n"
-             "8 - loan : si le client à un crédit en cours \n"
-             "9 - contact : type de contact (cellular, phone, unknown) \n"
-             "10 - day : le jour du mois où le client a été contacté \n"
-             "11 - month : le mois où le client a été contacté \n"
-             "12 - duration : le temps en ligne avec le client \n"
-             "13 - campaign : le nombre de fois que le client a été contacté au cours de cette campagne \n"
-             "14 - pdays : "
-             "15 - previous : "
-             "16 - poutcome : "
-             "17 - deposit :  "
-'''
+
     # deposit
     labels = ['No', 'Yes']
     values = df.deposit.value_counts(normalize=True)
