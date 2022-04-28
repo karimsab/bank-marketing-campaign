@@ -499,19 +499,19 @@ majorité positivement à la campagne étudiée.')
     fig, ax = plt.subplots(figsize=(20,8))
     tree.plot_tree(dt, max_depth=2, filled=True, feature_names=X_train.columns, class_names=True)
     st.pyplot(fig)
-    st.text("On y voit les nœuds de décision, qui se splitent pour effectuer la classification selon un \n\
+    st.write("On y voit les nœuds de décision, qui se splitent pour effectuer la classification selon un \n\
 certain seuil par variable. Lorsque le nœud ne se split plus, on parle alors de leaf (feuille). On peut \n\
 modifier ces paramètres afin de contrôler pour en optimiser son efficacité de classification : par exemple, \n\
 un nombre de noeuds trop important amènerait à du surapprentissage.")
 
     st.write("On peut afficher une matrice de confusion pour s'aider dans la compréhension du modèle:")
     st.image("https://user-images.githubusercontent.com/62601686/165782931-eb29223f-6570-4b84-850e-477fae038118.png", width=600)
-    st.text("Plusieurs critères de performances découlent de la matrice de confusion, ainsi on a :\n\
+    st.write("Plusieurs critères de performances découlent de la matrice de confusion, ainsi on a :\n\
 1 - **Le Rappel** (recall) : mesure le taux de vrais positifs, défini par : ")
     st.latex(r'''Rappel = \frac({TP}{TP + FN}''')
-    st.text("C'est la capacité de notre modèle à bien idientifier les clients intéressé par l'offre ainsi que les \n\
+    st.write("C'est la capacité de notre modèle à bien idientifier les clients intéressé par l'offre ainsi que les \n\
 faux négatifs, soit les personnes qu'on pense avoir fait un dépôt à terme mais qui n'ont pas souscris à l'offre.")
-    st.text("2 - **La précision** : mesure la performance du modèle à détecter les clients qui vont faire \n\
+    st.write("2 - **La précision** : mesure la performance du modèle à détecter les clients qui vont faire \n\
 un dépôt à terme. On a des informations sur les faux positifs aussi, c'est-à-dire ceux qui vont faire un \n\
 dépôt d'argent mais qui ne seront pas détecter. Donc cela permet de limiter les actions envers ces clients \n\
 car ils ne font pas partie des personnes sceptiques à l'offre et donc sur qui il faudrait déployer d'autres \n\
@@ -522,7 +522,7 @@ ressources.")
     st.write("On peut aussi utiliser le rapport de classification pour obtenir des informations supplémentaires :")
     y_pred = gbc.predict(X_test)
     st.code(metrics.classification_report(y_test, y_pred))
-    st.text("On voit que le modèle classe correctement à 76% les clients ayant répondu positivement (precision). Et à \n\
+    st.write("On voit que le modèle classe correctement à 76% les clients ayant répondu positivement (precision). Et à \n\
 71% les clients ayant répondu négativement (recall).")
     
 
