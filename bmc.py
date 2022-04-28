@@ -295,7 +295,7 @@ if page == "Etude des variables":
                  template='simple_white')
     st.plotly_chart(fig)
 
-    fig = px.parallel_categories(df, dimensions=['deposit', 'poutcome'],
+    fig = px.parallel_categories(df, dimensions=['poutcome', 'previous', 'deposit'],
                              color_continuous_scale=px.colors.sequential.Inferno)
 
     st.plotly_chart(fig)
