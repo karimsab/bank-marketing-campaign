@@ -78,8 +78,8 @@ if page == "Etude des variables":
 
     st.image('https://user-images.githubusercontent.com/62601686/165300401-3f1257db-3a61-419a-bf7a-840c3c013ff7.png', width=800)
     st.text("Pour ce jeu de données, nous avons des données personnelles \n sur des clients d’une banque qui ont été “télémarketés” \
-pour souscrire à un produit que \n\l’on appelle un 'dépôt à terme'. Lorsqu’un client souscrit à ce produit, il place une quantité \n\
-d’argent dans un compte spécifique et ne pourra pas \n\toucher ces fonds avant l’expiration du terme. En échange, le client reçoit \n\
+pour souscrire à un produit que \n l’on appelle un 'dépôt à terme'. Lorsqu’un client souscrit à ce produit, il place une quantité \n\
+d’argent dans un compte spécifique et ne pourra pas \n toucher ces fonds avant l’expiration du terme. En échange, le client reçoit \n\
 des intérêts de la part de la banque à la fin du terme.")
     st.markdown('Le jeu de données initial :')
     st.dataframe(df)
