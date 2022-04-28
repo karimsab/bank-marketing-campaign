@@ -77,6 +77,10 @@ page = st.sidebar.selectbox("Menu", ["Etude des variables", "Tests statistiques"
 if page == "Etude des variables":   
 
     st.image('https://user-images.githubusercontent.com/62601686/165300401-3f1257db-3a61-419a-bf7a-840c3c013ff7.png', width=800)
+    st.text("Pour ce jeu de données, nous avons des données personnelles sur des clients d’une banque qui ont été “télémarketés” \n\
+pour souscrire à un produit que l’on appelle un 'dépôt à terme'. Lorsqu’un client souscrit à ce produit, il place une quantité \n\
+d’argent dans un compte spécifique et ne pourra pas toucher ces fonds avant l’expiration du terme. En échange, le client reçoit \n\
+des intérêts de la part de la banque à la fin du terme.")
     st.markdown('Le jeu de données initial :')
     st.dataframe(df)
     st.markdown('Explication des variables :')
@@ -498,13 +502,28 @@ certain seuil par variable. Lorsque le nœud ne se split plus, on parle alors de
 modifier ces paramètres afin de contrôler pour en optimiser son efficacité de classification : par exemple, \n\
 un nombre de noeuds trop important amènerait à du surapprentissage.")
 
-    st.write('On peut utiliser le rapport de classification pour obtenir des informations supplémentaires,\
-ainsi qu’une matrice de contingence :')
+    st.write("On peut afficher une matrice de confusion pour s'aider dans la compréhension du modèle:")
+    st.image("https://user-images.githubusercontent.com/62601686/165782931-eb29223f-6570-4b84-850e-477fae038118.png", width=600)
+    st.text("Plusieurs critères de performances découlent de la matrice de confusion, ainsi on a :\n\
+1 - **Le Rappel** (recall) : mesure le taux de vrais positifs, défini par : ")
+    st.latex(r'''Rappel = \frac({TP}{TP + FN}''')
+    st.text("C'est la capacité de notre modèle à bien idientifier les clients intéressé par l'offre ainsi que les \n\
+faux négatifs, soit les personnes qu'on pense avoir fait un dépôt à terme mais qui n'ont pas souscris à l'offre.")
+    st.text("2 - **La précision** : mesure la performance du modèle à détecter les clients qui vont faire \n\
+un dépôt à terme. On a des informations sur les faux positifs aussi, c'est-à-dire ceux qui vont faire un \n\
+dépôt d'argent mais qui ne seront pas détecter. Donc cela permet de limiter les actions envers ces clients \n\
+car ils ne font pas partie des personnes sceptiques à l'offre et donc sur qui il faudrait déployer d'autres \n\
+ressources.")
+    st.latex(r'''Precision = \frac({TP}{TP + FP}''')
+    st.code(pd.crosstab(y_test, y_pred, rownames=['Classe réelle'], colnames=['Classe prédite']))
+    
+    st.write('On peut aussi utiliser le rapport de classification pour obtenir des informations supplémentaires :")
     y_pred = gbc.predict(X_test)
     st.code(metrics.classification_report(y_test, y_pred))
     st.text("On voit que le modèle classe correctement à 76% les clients ayant répondu positivement (precision). Et à \n\
 71% les clients ayant répondu négativement (recall).")
-    st.code(pd.crosstab(y_test, y_pred, rownames=['Classe réelle'], colnames=['Classe prédite']))
+    
+
     st.markdown('**Courbe ROC :**')
     st.write('Traçons maintenant la courbe ROC. La courbe ROC affiche la “sensibilité” (Vrai positif) en \n\
 fonction de “antispécificité” (Faux positif). On calcul en fait l’air sous la courbe (AUC, area under the curve). \n\
