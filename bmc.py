@@ -518,7 +518,7 @@ dépôt d'argent mais qui ne seront pas détecter. Donc cela permet de limiter l
 car ils ne font pas partie des personnes sceptiques à l'offre et donc sur qui il faudrait déployer d'autres \n\
 ressources.")
     st.latex(r'''Precision = \frac{TP}{TP + FP}''')
-    st.code(pd.crosstab(y_test, y_pred, rownames=['Classe réelle'], colnames=['Classe prédite']))
+    st.code(pd.crosstab(y_test, y_pred, rownames=['Classe prédite'], colnames=['Classe réelle']))
     st.write("On peut aussi utiliser le rapport de classification pour obtenir des informations supplémentaires :")
     st.code(metrics.classification_report(y_test, y_pred))
     st.write("On voit que le modèle classe correctement à 76% les clients ayant répondu positivement (precision). Et à \n\
