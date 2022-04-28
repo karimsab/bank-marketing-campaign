@@ -499,11 +499,12 @@ majorité positivement à la campagne étudiée.')
     fig, ax = plt.subplots(figsize=(20,8))
     tree.plot_tree(dt, max_depth=2, filled=True, feature_names=X_train.columns, class_names=True)
     st.pyplot(fig)
+    
+    y_pred = gbc.predict(X_test)
     st.write("On y voit les nœuds de décision, qui se splitent pour effectuer la classification selon un \n\
 certain seuil par variable. Lorsque le nœud ne se split plus, on parle alors de leaf (feuille). On peut \n\
 modifier ces paramètres afin de contrôler pour en optimiser son efficacité de classification : par exemple, \n\
 un nombre de noeuds trop important amènerait à du surapprentissage.")
-
     st.write("On peut afficher une matrice de confusion pour s'aider dans la compréhension du modèle:")
     st.image("https://user-images.githubusercontent.com/62601686/165782931-eb29223f-6570-4b84-850e-477fae038118.png", width=600)
     st.write("Plusieurs critères de performances découlent de la matrice de confusion, ainsi on a :\n\
@@ -518,9 +519,7 @@ car ils ne font pas partie des personnes sceptiques à l'offre et donc sur qui i
 ressources.")
     st.latex(r'''Precision = \frac({TP}{TP + FP}''')
     st.code(pd.crosstab(y_test, y_pred, rownames=['Classe réelle'], colnames=['Classe prédite']))
-    
     st.write("On peut aussi utiliser le rapport de classification pour obtenir des informations supplémentaires :")
-    y_pred = gbc.predict(X_test)
     st.code(metrics.classification_report(y_test, y_pred))
     st.write("On voit que le modèle classe correctement à 76% les clients ayant répondu positivement (precision). Et à \n\
 71% les clients ayant répondu négativement (recall).")
