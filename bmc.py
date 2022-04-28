@@ -493,14 +493,17 @@ majorité positivement à la campagne étudiée.')
     fig, ax = plt.subplots(figsize=(20,8))
     tree.plot_tree(dt, max_depth=2, filled=True, feature_names=X_train.columns, class_names=True)
     st.pyplot(fig)
-    st.text("Afficher l'arbre de décision permet de visualiser les choix opérés par l'algorithme, \n\
-et montre la pertinence des variables pour le modèle. Sur cet arbre sont représentés les noeuds \n\
-de décision, où une classification binaire est effectué sur la base d'une valeur seuil.
+    st.text("On y voit les nœuds de décision, qui se splitent pour effectuer la classification selon un \n\
+certain seuil par variable. Lorsque le nœud ne se split plus, on parle alors de leaf (feuille). On peut \n\
+modifier ces paramètres afin de contrôler pour en optimiser son efficacité de classification : par exemple, \n\
+un nombre de noeuds trop important amènerait à du surapprentissage.")
 
-    st.write('On peut utiliser le rapport de classification pour obtenir des données supplémentaires,\
+    st.write('On peut utiliser le rapport de classification pour obtenir des informations supplémentaires,\
 ainsi qu’une matrice de contingence :')
     y_pred = gbc.predict(X_test)
     st.code(metrics.classification_report(y_test, y_pred))
+    st.text("On voit que le modèle classe correctement à 76% les clients ayant répondu positivement (precision). Et à \n\
+71% les clients ayant répondu négativement (recall).")
     st.code(pd.crosstab(y_test, y_pred, rownames=['Classe réelle'], colnames=['Classe prédite']))
     st.markdown('**Courbe ROC :**')
     st.write('Traçons maintenant la courbe ROC. La courbe ROC affiche la “sensibilité” (Vrai positif) en \n\
