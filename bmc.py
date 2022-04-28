@@ -165,8 +165,8 @@ if page == "Etude des variables":
     st.plotly_chart(fig)
 
     st.write("Sans surprise, les clients ayant peu d'argent sur leur compte répondent \
-        en moyenne négativement à l'offre. Il serait donc préférable de contacter les clients \
-            avec une somme minimal sur leur compte bancaire.")
+en moyenne négativement à l'offre. Il serait donc préférable de contacter les clients \
+avec une somme minimal sur leur compte bancaire.")
 
     # day
     fig = go.Figure()
@@ -190,8 +190,8 @@ if page == "Etude des variables":
     st.plotly_chart(fig)    
 
     st.write("La variable 'day' représente le jour du mois où le client a été appelé. On observe qu'en moyenne \
-            si les clients ont été appelé dans les deux dernières semaines du mois, ils seront plus suceptible \
-                de répondre négativement à l'offre.")
+si les clients ont été appelé dans les deux dernières semaines du mois, ils seront plus suceptible \
+de répondre négativement à l'offre.")
 
     # month
     fig = go.Figure()
@@ -215,7 +215,7 @@ if page == "Etude des variables":
     st.plotly_chart(fig)
 
     st.write("On voit nettement que certains moins, les clients seront moins réceptifs \
-        à l'offre promotionnelle. En mai, seule 1 personne sur 3 à effectuer un dépôt à terme.")
+à l'offre promotionnelle. En mai, seule 1 personne sur 3 à effectuer un dépôt à terme.")
 
     # education
     fig = go.Figure()
@@ -238,8 +238,8 @@ if page == "Etude des variables":
 
     st.plotly_chart(fig)
 
-    st.write("Ici, on peut dire que les personnes ayant fait des études supérieurs ont plus tendance\
-        à accepter l'offre que s'ils s'étaient arrêtés au secondaire ou en primaire.")
+    st.write("Ici, on peut dire que les personnes ayant fait des études supérieurs ont plus tendance \
+à accepter l'offre que s'ils s'étaient arrêtés au secondaire ou en primaire.")
 
     # marital
     fig = go.Figure()
@@ -283,7 +283,7 @@ if page == "Etude des variables":
 
     st.plotly_chart(fig)
 
-    st.write("Certains métiers affichent des tendances nettes : les cols bleus ne sont pas\
+    st.write("Certains métiers affichent des tendances nettes : les cols bleus ne sont pas \
         à prioriser lors de contacts par la banque car peu intêressés par l'offre. Au contraire \
         les retraités ou les étudiants sont des clients prioritaires.")
 
@@ -293,14 +293,14 @@ if page == "Etude des variables":
 
     st.plotly_chart(fig)
 
-    st.write("La variable 'poutcome' a 4 modalités, dont une se nomme 'unknown', soit une valeur\
-     inconnu, cependant cette variable nous donne des informations importantes sur les résultats\
+    st.write("La variable 'poutcome' a 4 modalités, dont une se nomme 'unknown', soit une valeur \
+     inconnu, cependant cette variable nous donne des informations importantes sur les résultats \
          de l'enquête. Essayons d'en savoir plus")
     
     st.code("df.poutcome[df.previous == 0].unique() --> unknown")
         
-    st.write("En effet, la variable 'previous' nous indique si la personne a déjà été contacté avant\
-         cette campagne et si oui, combien de fois.\
+    st.write("En effet, la variable 'previous' nous indique si la personne a déjà été contacté avant \
+         cette campagne et si oui, combien de fois. \
              Après filtrage du dataframe pour les personne n'ayant jamais été contacté, la modalité 'unknown' est affichée, ce qui indique \
              que ce sont des personnes qui sont contacté pour la 1ère fois")
 
@@ -316,7 +316,7 @@ elif page == "Tests statistiques":
     st.pyplot(fig)
 
 
-    st.write('Le tableau affiché nous donne les informations suivantes : statistique du test, p-value,\
+    st.write('Le tableau affiché nous donne les informations suivantes : statistique du test, p-value, \
 degré de liberté, V de Cramer (coefficient de corrélation du 𝜒2)')
 
     st.latex(r'''test  du  \chi 2''')
@@ -341,9 +341,9 @@ degré de liberté, V de Cramer (coefficient de corrélation du 𝜒2)')
     stats = pd.DataFrame.from_dict(dico).transpose()
     stats = stats.rename(columns={0:'chi 2', 1:'p-value', 2:'DoF', 3:'V de Cramer'})
     st.write(stats)
-    st.write("Ce test nous donne des informations sur la corrélation entre les variables catégorielles et la variable cible.\
-              16 Les variables ayant un V de Cramer compris entre 20 et 30 sont des variables très corrélées à la variable \
-                  deposit, on a entre autres: - housing, contact, month, poutcome.")
+    st.write("Ce test nous donne des informations sur la corrélation entre les variables catégorielles et la variable cible. \
+16 Les variables ayant un V de Cramer compris entre 20 et 30 sont des variables très corrélées à la variable \
+deposit, on a entre autres: - housing, contact, month, poutcome.")
 
     st.markdown('**test ANOVA**')
     st.write('Il est aussi possible de faire un test ANOVA entre les variables quantitatives et les \
@@ -356,7 +356,7 @@ variables sont corrélées, elles sont donc chacunes pertinentes.')
     result = statsmodels.formula.api.ols('balance ~ loan', data=df).fit()
     table = statsmodels.api.stats.anova_lm(result)
     st.write(table)
-    st.write("Ici, on voit que la variable balance et la variable loan obtiennent une p-value très faible,\
+    st.write("Ici, on voit que la variable balance et la variable loan obtiennent une p-value très faible, \
 on peut donc rejeter l’hypothèse H0 entre ces 2 variables.")
 
 ###### page machine learning ######
@@ -384,9 +384,9 @@ campagne. 2 clients sur 5 ont répondu positivement à l’offre.')
     st.write('Quand campaign > 35')
     st.write(df[df['campaign']>35])
 
-    st.write("Pour ces clients, aucun n'a répondu positivement à la campagne.\
+    st.write("Pour ces clients, aucun n'a répondu positivement à la campagne. \
 Ces valeurs ne représentent pas la majorité des clients, il serait utile de majorer la variable \
-campaign, pour le faire, on remplacera les valeurs extrêmes par la moyenne de la variable.\
+campaign, pour le faire, on remplacera les valeurs extrêmes par la moyenne de la variable. \
 On garde les valeurs extrêmes de previous car certains ont répondus positivement, c’est \
 donc des informations utiles pour savoir quel type de client est susceptible de faire un \
 dépôt après la campagne. Par la même occasion, on va créer une copie de df pour nos \
@@ -400,7 +400,7 @@ prochaines transformations, et aussi, binarisé la variable deposit.")
     st.write('On supprimes les variables dont on a plus besoin')
     st.write(data.head())
 
-    st.write("On peut dorénavant appliquer nos modèles de classification sur nos données. Avant cela,\
+    st.write("On peut dorénavant appliquer nos modèles de classification sur nos données. Avant cela, \
 on va diviser notre jeu de données en un set d'entraînement et un set de test, pour pouvoir \
 ensuite vérifier la précision de nos modèles via plusieurs métriques. \
 Essayons plusieurs modèles pour voir les plus performants.")
@@ -468,8 +468,8 @@ Essayons plusieurs modèles pour voir les plus performants.")
     st.pyplot(fig)
 
     st.write("Les 3 variables les plus importantes en termes d’informations pertinentes est poutcome=\
-success, contact=unknown et age pour le modèle d’arbre de décision.\
-Pour le modèle de gradient boosting, on a : balance, poutcome (success) et age.\
+success, contact=unknown et age pour le modèle d’arbre de décision. \
+Pour le modèle de gradient boosting, on a : balance, poutcome (success) et age. \
 Les variables age et poutcome sont donc des informations à privilégier lors d’une \
 campagne, notamment le fait que les clients contactés qui ont répondu positivement à une \
 précédente campagne, ont plus de chance de répondre positivement à une autre \
@@ -481,7 +481,7 @@ aussi s’en assurer visuellement :")
     sns.countplot(df['poutcome'][df['poutcome']=='success'], hue=df.deposit)
     st.pyplot(fig)
 
-    st.write('En effet, les clients ayant déjà profiter d’une offre antérieure, ont répondu en grande\
+    st.write('En effet, les clients ayant déjà profiter d’une offre antérieure, ont répondu en grande \
 majorité positivement à la campagne étudiée.')
 
     st.markdown('**Arbre de décision :**')
@@ -493,6 +493,9 @@ majorité positivement à la campagne étudiée.')
     fig, ax = plt.subplots(figsize=(20,8))
     tree.plot_tree(dt, max_depth=2, filled=True, feature_names=X_train.columns, class_names=True)
     st.pyplot(fig)
+    st.text("Afficher l'arbre de décision permet de visualiser les choix opérés par l'algorithme, \n\
+et montre la pertinence des variables pour le modèle. Sur cet arbre sont représentés les noeuds \n\
+de décision, où une classification binaire est effectué sur la base d'une valeur seuil.
 
     st.write('On peut utiliser le rapport de classification pour obtenir des données supplémentaires,\
 ainsi qu’une matrice de contingence :')
@@ -500,10 +503,10 @@ ainsi qu’une matrice de contingence :')
     st.code(metrics.classification_report(y_test, y_pred))
     st.code(pd.crosstab(y_test, y_pred, rownames=['Classe réelle'], colnames=['Classe prédite']))
     st.markdown('**Courbe ROC :**')
-    st.write('Traçons maintenant la courbe ROC. La courbe ROC affiche la “sensibilité” (Vrai positif) en \
-fonction de “antispécificité” (Faux positif). On calcul en fait l’air sous la courbe (AUC, area \
-under the curve). Si cette valeur est de 0,5 (50%), le modèle est aléatoire, plus l’aire est \
-importante, plus notre modèle sera performant et arrivera à classifier correctement.')
+    st.write('Traçons maintenant la courbe ROC. La courbe ROC affiche la “sensibilité” (Vrai positif) en \n\
+fonction de “antispécificité” (Faux positif). On calcul en fait l’air sous la courbe (AUC, area under the curve). \n\
+Si cette valeur est de 0,5 (50%), le modèle est aléatoire, plus l’aire est importante, plus notre modèle sera \n\
+performant et arrivera à classifier correctement.')
 
 
     from sklearn.metrics import roc_curve
