@@ -80,8 +80,9 @@ if page == "Etude des variables":
     st.markdown('Le jeu de données initial :')
     st.dataframe(df)
     st.markdown('Explication des variables :')
-    st.write("1 - age : âge du client")
-    st.text("2 - job : métier du client \n aaa")
+    st.write("")
+    st.text("1 - age : âge du client \n
+    2 - job : métier du client \n")
 
     # deposit
     labels = ['No', 'Yes']
