@@ -82,7 +82,7 @@ if page == "Etude des variables":
     st.markdown('Explication des variables :')
     st.write("")
     st.text("1 - age : âge du client \n\
-    2 - job : métier du client \n")
+2 - job : métier du client \n")
 
     # deposit
     labels = ['No', 'Yes']
