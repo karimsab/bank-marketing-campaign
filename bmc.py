@@ -77,8 +77,8 @@ page = st.sidebar.selectbox("Menu", ["Etude des variables", "Tests statistiques"
 if page == "Etude des variables":   
 
     st.image('https://user-images.githubusercontent.com/62601686/165300401-3f1257db-3a61-419a-bf7a-840c3c013ff7.png', width=800)
-    st.text("Pour ce jeu de données, nous avons des données personnelles sur des \n\
-clients d’une banque qui ont été “télémarketés” pour souscrire à un produit que \n\
+    st.text("Pour ce jeu de données, nous avons des données personnelles sur des clients \n\
+d’une banque qui ont été “télémarketés” pour souscrire à un produit que \n\
 l’on appelle un 'dépôt à terme'. Lorsqu’un client souscrit à ce produit, il place \n\
 une quantité d’argent dans un compte spécifique et ne pourra pas toucher ces fonds \n\
 avant l’expiration du terme. En échange, le client reçoit des intérêts de la \n\
