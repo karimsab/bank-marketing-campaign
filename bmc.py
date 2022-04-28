@@ -507,9 +507,9 @@ modifier ces paramètres afin de contrôler pour en optimiser son efficacité de
 un nombre de noeuds trop important amènerait à du surapprentissage.")
     st.write("On peut afficher une matrice de confusion pour s'aider dans la compréhension du modèle:")
     st.image("https://user-images.githubusercontent.com/62601686/165782931-eb29223f-6570-4b84-850e-477fae038118.png", width=600)
-    st.write("Plusieurs critères de performances découlent de la matrice de confusion, ainsi on a :\n\
-1 - **Le Rappel** (recall) : mesure le taux de vrais positifs, défini par : ")
-    st.latex(r'''Rappel = \frac{TP}{TP + FN}''')
+    st.write("Plusieurs critères de performances découlent de la matrice de confusion, ainsi on a :")
+    st.write("1 - **Le Rappel** (recall) : mesure le taux de vrais positifs, défini par : ")
+    st.latex(r'''Rappel = \frac{VP}{VP + FN}''')
     st.write("C'est la capacité de notre modèle à bien idientifier les clients ayant souscris à l'offre ainsi que les \n\
 faux négatifs, soit les personnes qu'on pense avoir fait un dépôt à terme mais qui n'ont pas souscris à l'offre.")
     st.write("2 - **La Précision** : mesure la performance du modèle à détecter les clients qui vont faire \n\
@@ -517,7 +517,7 @@ un dépôt à terme. On a des informations sur les faux positifs aussi, c'est-à
 dépôt d'argent mais qui ne seront pas détecter. Donc cela permet de limiter les actions envers ces clients \n\
 car ils ne font pas partie des personnes sceptiques à l'offre et donc sur qui il faudrait déployer d'autres \n\
 ressources.")
-    st.latex(r'''Precision = \frac{TP}{TP + FP}''')
+    st.latex(r'''Precision = \frac{VP}{VP + FP}''')
     st.code(pd.crosstab(y_test, y_pred, rownames=['Classe prédite'], colnames=['Classe réelle']))
     st.write("Le rapport de classification condense ces informations, on a en plus le F-1 score, une \n\
 métrique qui combine le rappel et la précision :")
@@ -527,10 +527,10 @@ métrique qui combine le rappel et la précision :")
     
 
     st.markdown('**Courbe ROC :**')
-    st.write('Traçons maintenant la courbe ROC. La courbe ROC affiche la “sensibilité” (Vrai positif) en \n\
-fonction de “antispécificité” (Faux positif). On calcul en fait l’air sous la courbe (AUC, area under the curve). \n\
+    st.write("Traçons maintenant la courbe ROC. La courbe ROC affiche la 'sensibilité' (Vrai positif) en \n\
+fonction de 'l'antispécificité' (Faux positif). On calcul en fait l’air sous la courbe (AUC, area under the curve). \n\
 Si cette valeur est de 0,5 (50%), le modèle est aléatoire, plus l’aire est importante, plus notre modèle sera \n\
-performant et arrivera à classifier correctement.')
+performant et arrivera à classifier correctement.")
 
 
     from sklearn.metrics import roc_curve
@@ -560,7 +560,9 @@ performant et arrivera à classifier correctement.')
     st.pyplot(fig)
 
     st.markdown('**GridSearchCV :**')
-
+    st.write("GridSearchCV permet d'entrainer le modèle en lui intégrant une liste de \n\
+différentes combinaisons de paramètres et ainsi d'obtenir une grille listant les \n\
+meilleurs paramètres pour accroître la précision du modèle.")
 
     from sklearn.model_selection import GridSearchCV
 
