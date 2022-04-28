@@ -510,19 +510,20 @@ un nombre de noeuds trop important amènerait à du surapprentissage.")
     st.write("Plusieurs critères de performances découlent de la matrice de confusion, ainsi on a :\n\
 1 - **Le Rappel** (recall) : mesure le taux de vrais positifs, défini par : ")
     st.latex(r'''Rappel = \frac{TP}{TP + FN}''')
-    st.write("C'est la capacité de notre modèle à bien idientifier les clients intéressé par l'offre ainsi que les \n\
+    st.write("C'est la capacité de notre modèle à bien idientifier les clients ayant souscris à l'offre ainsi que les \n\
 faux négatifs, soit les personnes qu'on pense avoir fait un dépôt à terme mais qui n'ont pas souscris à l'offre.")
-    st.write("2 - **La précision** : mesure la performance du modèle à détecter les clients qui vont faire \n\
+    st.write("2 - **La Précision** : mesure la performance du modèle à détecter les clients qui vont faire \n\
 un dépôt à terme. On a des informations sur les faux positifs aussi, c'est-à-dire ceux qui vont faire un \n\
 dépôt d'argent mais qui ne seront pas détecter. Donc cela permet de limiter les actions envers ces clients \n\
 car ils ne font pas partie des personnes sceptiques à l'offre et donc sur qui il faudrait déployer d'autres \n\
 ressources.")
     st.latex(r'''Precision = \frac{TP}{TP + FP}''')
     st.code(pd.crosstab(y_test, y_pred, rownames=['Classe prédite'], colnames=['Classe réelle']))
-    st.write("On peut aussi utiliser le rapport de classification pour obtenir des informations supplémentaires :")
+    st.write("Le rapport de classification condense ces informations, on a en plus le F-1 score, une \n\
+métrique qui combine le rappel et la précision :")
     st.code(metrics.classification_report(y_test, y_pred))
-    st.write("On voit que le modèle classe correctement à 76% les clients ayant répondu positivement (precision). Et à \n\
-71% les clients ayant répondu négativement (recall).")
+    prec = round(metrics.precision_score(y_test, y_pred),2)*100
+    rec = round(metrics.recall_score(y_test, y_pred),2)*100
     
 
     st.markdown('**Courbe ROC :**')
