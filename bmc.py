@@ -509,7 +509,7 @@ un nombre de noeuds trop important amènerait à du surapprentissage.")
     st.image("https://user-images.githubusercontent.com/62601686/165782931-eb29223f-6570-4b84-850e-477fae038118.png", width=600)
     st.write("Plusieurs critères de performances découlent de la matrice de confusion, ainsi on a :\n\
 1 - **Le Rappel** (recall) : mesure le taux de vrais positifs, défini par : ")
-    st.latex(r'''Rappel = \frac({TP}{TP + FN}''')
+    st.latex(r'''Rappel = \frac({TP}{TP + FN})''')
     st.write("C'est la capacité de notre modèle à bien idientifier les clients intéressé par l'offre ainsi que les \n\
 faux négatifs, soit les personnes qu'on pense avoir fait un dépôt à terme mais qui n'ont pas souscris à l'offre.")
     st.write("2 - **La précision** : mesure la performance du modèle à détecter les clients qui vont faire \n\
@@ -517,7 +517,7 @@ un dépôt à terme. On a des informations sur les faux positifs aussi, c'est-à
 dépôt d'argent mais qui ne seront pas détecter. Donc cela permet de limiter les actions envers ces clients \n\
 car ils ne font pas partie des personnes sceptiques à l'offre et donc sur qui il faudrait déployer d'autres \n\
 ressources.")
-    st.latex(r'''Precision = \frac({TP}{TP + FP}''')
+    st.latex(r'''Precision = \frac({TP}{TP + FP})''')
     st.code(pd.crosstab(y_test, y_pred, rownames=['Classe réelle'], colnames=['Classe prédite']))
     st.write("On peut aussi utiliser le rapport de classification pour obtenir des informations supplémentaires :")
     st.code(metrics.classification_report(y_test, y_pred))
