@@ -92,9 +92,12 @@ if page == "Etude des variables":
 10 - day : le jour du mois où le client a été contacté \n\
 11 - month : le mois où le client a été contacté \n\
 12 - duration : le temps en ligne avec le client \n\
-13 - campaign : combien de fois le client a été contacté au cours de cette campagne \n\
-14 - pdays : combien de jours se sont écoulés depuis le dernier contact \n\
-15 - previous : combien de fois le client a été contacté au cours de la précedente campagne \n\
+13 - campaign : combien de fois le client a été contacté \n\
+                au cours de cette campagne \n\
+14 - pdays : combien de jours se sont écoulés depuis le \n\
+             dernier contact \n\
+15 - previous : combien de fois le client a été contacté \n\
+                au cours de la précedente campagne \n\
 16 - poutcome : résultat de la précédente campagne \n\
 17 - deposit :  résultat de la présente campagne")
 
