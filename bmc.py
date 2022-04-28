@@ -80,9 +80,23 @@ if page == "Etude des variables":
     st.markdown('Le jeu de données initial :')
     st.dataframe(df)
     st.markdown('Explication des variables :')
-    st.write("")
     st.text("1 - age : âge du client \n\
-2 - job : métier du client \n")
+2 - job : métier du client \n\
+3 - marital : statut marital du client \n\
+4 - education : niveau d'étude du client \n\
+5 - default : si le client à un crédit impayé \n\
+6 - balance : somme d'argent sur le compte bancaire \n\
+7 - housing : si le client a un emprûnt immobilier \n\
+8 - loan : si le client à un crédit en cours \n\
+9 - contact : type de contact (cellular, phone, unknown) \n\
+10 - day : le jour du mois où le client a été contacté \n\
+11 - month : le mois où le client a été contacté \n\
+12 - duration : le temps en ligne avec le client \n\
+13 - campaign : combien de fois le client a été contacté au cours de cette campagne \n\
+14 - pdays : combien de jours se sont écoulés depuis le dernier contact \n\
+15 - previous : combien de fois le client a été contacté au cours de la précedente campagne \n\
+16 - poutcome : résultat de la précédente campagne \n\
+17 - deposit :  résultat de la présente campagne")
 
     # deposit
     labels = ['No', 'Yes']
