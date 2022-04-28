@@ -517,7 +517,7 @@ ressources.")
     st.latex(r'''Precision = \frac({TP}{TP + FP}''')
     st.code(pd.crosstab(y_test, y_pred, rownames=['Classe réelle'], colnames=['Classe prédite']))
     
-    st.write('On peut aussi utiliser le rapport de classification pour obtenir des informations supplémentaires :")
+    st.write("On peut aussi utiliser le rapport de classification pour obtenir des informations supplémentaires :")
     y_pred = gbc.predict(X_test)
     st.code(metrics.classification_report(y_test, y_pred))
     st.text("On voit que le modèle classe correctement à 76% les clients ayant répondu positivement (precision). Et à \n\
