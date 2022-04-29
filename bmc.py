@@ -320,9 +320,10 @@ elif page == "Tests statistiques":
     sns.heatmap(df.corr(), annot=True,cmap='viridis')
     plt.title('Coefficient de Pearson')
     st.pyplot(fig)
-
-
-    st.write('Le tableau affiché nous donne les informations suivantes : statistique du test, p-value, \
+    st.write("Le coefficient de Pearson est compris entre -1 et 1. Deux variables \n\
+    parfaitement corrélé positivement afficheront un coefficient de 1.")  
+    st.write(" ")
+    st.write('Le tableau suivant nous donne les informations suivantes : statistique du test, p-value, \
 degré de liberté, V de Cramer (coefficient de corrélation du 𝜒2)')
 
     st.latex(r'''test  du  \chi 2''')
