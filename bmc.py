@@ -313,6 +313,7 @@ de répondre négativement à l'offre.")
 ###### page tests statistiques ######
 
 elif page == "Tests statistiques":
+    st.header("Analyse des variables numériques à l'aide du test de Pearson")
     #pearson
     st.markdown('**La matrice de corrélation (test de Pearson) :**')
 
@@ -322,7 +323,7 @@ elif page == "Tests statistiques":
     st.pyplot(fig)
     st.write("Le coefficient de Pearson est compris entre -1 et 1. Deux variables \n\
     parfaitement corrélé positivement afficheront un coefficient de 1.")  
-    st.write(" ")
+    st.header("Analyse des variables catégorielles à l'aide du test du 𝜒2")
     st.write('Le tableau suivant nous donne les informations suivantes : statistique du test, p-value, \
 degré de liberté, V de Cramer (coefficient de corrélation du 𝜒2)')
 
@@ -349,7 +350,7 @@ degré de liberté, V de Cramer (coefficient de corrélation du 𝜒2)')
     stats = stats.rename(columns={0:'chi 2', 1:'p-value', 2:'DoF', 3:'V de Cramer'})
     st.write(stats)
     st.write("Ce test nous donne des informations sur la corrélation entre les variables catégorielles et la variable cible. \
-16 Les variables ayant un V de Cramer compris entre 20 et 30 sont des variables très corrélées à la variable \
+Les variables ayant un V de Cramer compris entre 20 et 30 sont des variables très corrélées à la variable \
 deposit, on a entre autres: - housing, contact, month, poutcome.")
 
     st.markdown('**test ANOVA**')
