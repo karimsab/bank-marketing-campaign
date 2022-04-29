@@ -313,7 +313,7 @@ de répondre négativement à l'offre.")
 ###### page tests statistiques ######
 
 elif page == "Tests statistiques":
-    st.header("Analyse des variables numériques à l'aide du test de Pearson")
+    st.subheader("Analyse des variables numériques à l'aide du test de Pearson")
     #pearson
     st.markdown('**La matrice de corrélation (test de Pearson) :**')
 
@@ -323,7 +323,7 @@ elif page == "Tests statistiques":
     st.pyplot(fig)
     st.write("Le coefficient de Pearson est compris entre -1 et 1. Deux variables \n\
     parfaitement corrélé positivement afficheront un coefficient de 1.")  
-    st.header("Analyse des variables catégorielles à l'aide du test du 𝜒2")
+    st.subheader("Analyse des variables catégorielles à l'aide du test du 𝜒2")
     st.write('Le tableau suivant nous donne les informations suivantes : statistique du test, p-value, \
 degré de liberté, V de Cramer (coefficient de corrélation du 𝜒2)')
 
@@ -352,7 +352,7 @@ degré de liberté, V de Cramer (coefficient de corrélation du 𝜒2)')
     st.write("Ce test nous donne des informations sur la corrélation entre les variables catégorielles et la variable cible. \
 Les variables ayant un V de Cramer compris entre 20 et 30 sont des variables très corrélées à la variable \
 deposit, on a entre autres: - housing, contact, month, poutcome.")
-
+    st.subheader("Analyse des variables quantitatives vs qualitatives")
     st.markdown('**test ANOVA**')
     st.write('Il est aussi possible de faire un test ANOVA entre les variables quantitatives et les \
 variables qualitatives. ANOVA (ANalyse Of VAriance), compare l’écart des moyennes \
