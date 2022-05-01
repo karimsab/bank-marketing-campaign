@@ -7,10 +7,10 @@ import plotly.express as px
 import streamlit as st
 
 
-st.title('Bank Campaign Marketing')
+st.title('Bank Marketing Campaign')
 st.caption('par Karim SABER-CHERIF et Artem VALIULIN')
 
-df = pd.read_csv("https://raw.githubusercontent.com/karimsab/bank-marketing-campaign/main/bank.csv", sep=",", header=0)
+df = pd.read_csv("https://user-images.githubusercontent.com/62601686/166140224-063e4187-9431-4203-b583-eb3468543cc9.png", sep=",", header=0)
 
 #####################################################################################
 #####################################################################################
