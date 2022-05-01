@@ -10,7 +10,7 @@ import streamlit as st
 st.title('Bank Marketing Campaign')
 st.caption('par Karim SABER-CHERIF et Artem VALIULIN')
 
-df = pd.read_csv("https://user-images.githubusercontent.com/62601686/166140224-063e4187-9431-4203-b583-eb3468543cc9.png", sep=",", header=0)
+df = pd.read_csv("https://raw.githubusercontent.com/karimsab/bank-marketing-campaign/main/bank.csv", sep=",", header=0)
 
 #####################################################################################
 #####################################################################################
@@ -76,7 +76,7 @@ page = st.sidebar.selectbox("Menu", ["Etude des variables", "Tests statistiques"
 
 if page == "Etude des variables":   
 
-    st.image('https://user-images.githubusercontent.com/62601686/165300401-3f1257db-3a61-419a-bf7a-840c3c013ff7.png', width=800)
+    st.image('https://user-images.githubusercontent.com/62601686/166140224-063e4187-9431-4203-b583-eb3468543cc9.png', width=800)
     st.text("Pour ce jeu de données, nous avons des données personnelles sur des clients \n\
 d’une banque qui ont été “télémarketés” pour souscrire à un produit que \n\
 l’on appelle un 'dépôt à terme'. Lorsqu’un client souscrit à ce produit, il place \n\
