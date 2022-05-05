@@ -8,7 +8,6 @@ import streamlit as st
 
 
 st.title('Bank Marketing Campaign')
-st.caption('par Karim SABER-CHERIF et Artem VALIULIN')
 
 df = pd.read_csv("https://raw.githubusercontent.com/karimsab/bank-marketing-campaign/main/bank.csv", sep=",", header=0)
 
