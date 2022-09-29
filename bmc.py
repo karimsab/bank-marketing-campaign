@@ -6,8 +6,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st
 
-@st.cache(ttl=24*3600)
-
 st.title('Bank Marketing Campaign')
 
 df = pd.read_csv("https://raw.githubusercontent.com/karimsab/bank-marketing-campaign/main/bank.csv", sep=",", header=0)
