@@ -9,4 +9,3 @@ seaborn==0.11.2
 statsmodels==0.13.2
 streamlit==1.8.1
 protobuf~=3.19.0
-streamlit==1.13.0
