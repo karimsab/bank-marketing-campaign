@@ -315,9 +315,10 @@ elif page == "Tests statistiques":
     #pearson
     st.markdown('**La matrice de corrélation (test de Pearson) :**')
 
-    fig, ax = plt.subplots(figsize=(10,8))
-    sns.heatmap(df.corr(), annot=True,cmap='viridis')
-    plt.title('Coefficient de Pearson')
+    fig = go.Figure()
+    fig.add_trace(go.Heatmap(z=df.corr(), x=df_num.columns, y=df_num.columns, texttemplate="%{z:.2f}"))
+    fig.update_layout(height=600, title_text='Coefficient de Pearson')
+    fig.show()
     st.pyplot(fig)
     st.write("Le coefficient de Pearson est compris entre -1 et 1. Deux variables \n\
     parfaitement corrélé positivement afficheront un coefficient de 1.")  
