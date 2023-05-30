@@ -319,7 +319,8 @@ elif page == "Tests statistiques":
     fig.add_trace(go.Heatmap(z=df.corr(), x=df_num.columns, y=df_num.columns, texttemplate="%{z:.2f}"))
     fig.update_layout(height=600, title_text='Coefficient de Pearson')
     fig.show()
-    st.pyplot(fig)
+    
+    st.plotly_chart(fig)
     st.write("Le coefficient de Pearson est compris entre -1 et 1. Deux variables \n\
     parfaitement corrélé positivement afficheront un coefficient de 1.")  
     st.subheader("Analyse des variables catégorielles à l'aide du test du 𝜒2")
