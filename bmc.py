@@ -314,7 +314,7 @@ elif page == "Tests statistiques":
     st.subheader("Analyse des variables numériques à l'aide du test de Pearson")
     #pearson
     st.markdown('**La matrice de corrélation (test de Pearson) :**')
-
+    df_num = df.select_dtypes('int64')
     fig = go.Figure()
     fig.add_trace(go.Heatmap(z=df.corr(), x=df_num.columns, y=df_num.columns, texttemplate="%{z:.2f}"))
     fig.update_layout(height=600, title_text='Coefficient de Pearson')
